@@ -1,11 +1,21 @@
 import { prisma } from '../../../database/prisma/PrismaClient';
+import { ListProductEntity } from '../entities/list-product.entity';
 import { ProductEntity } from '../entities/product.entity';
-import { CreateProductDto } from '../dto/create-product.dto';
 
 export class ListProductRepository {
-  async execute(): Promise<ProductEntity[]> {
-    const listProducts = await prisma.product.findMany();
+  async execute() {
+    const totalProduct = await prisma.product.count();
+    const products: ProductEntity[] = await prisma.product.findMany();
 
-    return listProducts;
+    if (products.length <= 0) {
+      throw new Error(`No results!`);
+    }
+
+    const result = {
+      totalProduct,
+      products,
+    } as ListProductEntity;
+
+    return result;
   }
 }

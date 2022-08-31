@@ -1,9 +1,10 @@
 import { prisma } from '../../../database/prisma/PrismaClient';
+import { ListProductEntity } from '../entities/list-product.entity';
 import { ProductEntity } from '../entities/product.entity';
 
 export class SearchProductRepository {
-  async execute(query: string): Promise<ProductEntity[]> {
-    const searchProducts = await prisma.product.findMany({
+  async execute(query: string) {
+    const products: ProductEntity[] = await prisma.product.findMany({
       where: {
         OR: [
           {
@@ -24,10 +25,15 @@ export class SearchProductRepository {
       },
     });
 
-    if (searchProducts.length <= 0) {
+    if (products.length <= 0) {
       throw new Error(`No product contracted based on ${query}`);
     }
 
-    return searchProducts;
+    const result = {
+      totalProduct: products.length,
+      products,
+    } as ListProductEntity;
+
+    return result;
   }
 }
