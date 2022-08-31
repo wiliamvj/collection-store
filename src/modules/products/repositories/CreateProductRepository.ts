@@ -14,7 +14,12 @@ export class CreateProductRepository {
       throw new Error(`This sku ${createUserDto.sku} already exists!`);
     }
 
-    const saveProduct = await prisma.product.create({ data: createUserDto });
+    const slug = createUserDto.title.replace(/\W+/g, '-').toLowerCase();
+    const skuToUp = createUserDto.sku.toUpperCase();
+
+    const saveProduct = await prisma.product.create({
+      data: { ...createUserDto, slug, sku: skuToUp },
+    });
 
     return saveProduct;
   }

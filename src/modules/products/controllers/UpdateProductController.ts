@@ -17,7 +17,9 @@ class UpdateProductController {
 
     const updateProductRepository = new UpdateProductRepository();
 
-    const updated = await updateProductRepository.execute(product);
+    const updated: ProductEntity = await updateProductRepository.execute(
+      product,
+    );
 
     res.json(updated);
   }

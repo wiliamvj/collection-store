@@ -16,7 +16,7 @@ model Product {
   slug        String?
   price       Float
   sku         String   @unique
-  gtin        Int      @unique
+  gtin        Int
   brand       String
   description String
   image       String

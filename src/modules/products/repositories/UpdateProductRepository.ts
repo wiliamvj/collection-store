@@ -14,9 +14,12 @@ export class UpdateProductRepository {
       throw new Error(`This sku ${updateUserDto.sku} does not exists!`);
     }
 
+    const slug = updateUserDto.title?.replace(/\W+/g, '-').toLowerCase();
+    const skuToUp = updateUserDto.sku?.toUpperCase();
+
     const updateProduct = await prisma.product.update({
       where: { id: updateUserDto.id },
-      data: updateUserDto,
+      data: { ...updateUserDto, slug, sku: skuToUp },
     });
 
     return updateProduct;
