@@ -87,6 +87,11 @@
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
+"@prisma/engines@4.3.0":
+  version "4.3.0"
+  resolved "https://registry.yarnpkg.com/@prisma/engines/-/engines-4.3.0.tgz#097784f5d044d4a364652420d3c4d6d4c0baa909"
+  integrity sha512-JAyU7+QEpLkVtgVMYBSPQt9sUcgFqA/MdD4mK7yx+ZyDfHQlP+nT1rmqFPZ3MofR0mAha7nr3rx0ZNN46gLp9Q==
+
 "@tsconfig/node10@^1.0.7":
   version "1.0.9"
   resolved "https://registry.yarnpkg.com/@tsconfig/node10/-/node10-1.0.9.tgz#df4907fc07a886922637b15e02d4cebc4c0021b2"
@@ -1155,6 +1160,13 @@ prettier@^2.7.1:
   version "2.7.1"
   resolved "https://registry.yarnpkg.com/prettier/-/prettier-2.7.1.tgz#e235806850d057f97bb08368a4f7d899f7760c64"
   integrity sha512-ujppO+MkdPqoVINuDFDRLClm7D78qbDt0/NR+wp5FqEZOoTNAjPHWj17QRhu7geIHJfcNhRk1XVQmF8Bp3ye+g==
+
+prisma@^4.3.0:
+  version "4.3.0"
+  resolved "https://registry.yarnpkg.com/prisma/-/prisma-4.3.0.tgz#2c989be1bc6298f28bb4db40521dabec46e7a388"
+  integrity sha512-Ii588H5IsbSun5BwpNQwrayrHKecFEZ6wDoJ7nr2IsqlMblmkA1dextGBObsG9tg+aIVhTrNa7OAbhbvEfqhdQ==
+  dependencies:
+    "@prisma/engines" "4.3.0"
 
 proxy-addr@~2.0.7:
   version "2.0.7"
