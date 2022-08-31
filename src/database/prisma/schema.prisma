@@ -6,19 +6,21 @@ generator client {
 }
 
 datasource db {
-  provider = "mysql"
+  provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
 model Product {
-  id          String @id @default(uuid())
+  id          String   @id @default(uuid())
   title       String
-  slug        String
+  slug        String?
   price       Float
-  sku         String @unique
-  gtin        Int    @unique
+  sku         String   @unique
+  gtin        Int      @unique
   brand       String
   description String
   image       String
   category    String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 }
