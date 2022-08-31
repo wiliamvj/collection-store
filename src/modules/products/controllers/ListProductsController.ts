@@ -1,7 +1,7 @@
 import 'reflect-metadata';
 import { Request, Response } from 'express';
 
-import { ListProductRepository } from '../repositories/ListProductRepository';
+import { ListProductRepository } from '../repositories/ListProductsRepository';
 import { ProductEntity } from '../entities/product.entity';
 
 class ListProductController {
