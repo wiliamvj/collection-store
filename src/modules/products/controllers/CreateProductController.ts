@@ -4,6 +4,7 @@ import { Request, Response } from 'express';
 import { CreateProductDto } from '../dto/create-product.dto';
 
 import { CreateProductRepository } from '../repositories/CreateProductRepository';
+import { ProductEntity } from '../entities/product.entity';
 
 class CreateProductController {
   async handle(req: Request<{}, {}, CreateProductDto>, res: Response) {
@@ -16,7 +17,7 @@ class CreateProductController {
 
     const createProductRepository = new CreateProductRepository();
 
-    const newProduct = await createProductRepository.execute(
+    const newProduct: ProductEntity = await createProductRepository.execute(
       product as CreateProductDto,
     );
 
