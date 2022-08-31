@@ -2,8 +2,9 @@ import 'reflect-metadata';
 import { transformAndValidate } from 'class-transformer-validator';
 import { Request, Response } from 'express';
 import { UpdateProductDto } from '../dto/update-product.dto';
-
 import { ProductEntity } from '../entities/product.entity';
+
+import { UpdateProductRepository } from '../repositories/UpdateProductRepository';
 
 class UpdateProductController {
   async handle(req: Request<{}, {}, UpdateProductDto>, res: Response) {
@@ -11,11 +12,14 @@ class UpdateProductController {
     const userJson = JSON.stringify(product);
 
     transformAndValidate(UpdateProductDto, userJson).catch(err => {
-      console.log(err);
       res.json(err[0].constraints);
     });
 
-    res.json(product);
+    const updateProductRepository = new UpdateProductRepository();
+
+    const updated = await updateProductRepository.execute(product);
+
+    res.json(updated);
   }
 }
 
