@@ -161,6 +161,41 @@
           }
         }
       }
+    },
+    "/product/image-upload/{sku}": {
+      "post": {
+        "tags": [
+          "Products"
+        ],
+        "summary": "Upload image ",
+        "description": "Upload image for product endpoint",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "image/png": {
+              "schema": {
+                "type": "string",
+                "format": "binary"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Ok"
+          },
+          "400": {
+            "description": "This sku (our sku) already exists!"
+          },
+          "401": {
+            "description": "Token not found!"
+          }
+        }
+      }
     }
   },
   "components": {
