@@ -9,12 +9,9 @@ class DeleteProductController {
 
     const deleteProductRepository = new DeleteProductRepository();
 
-    await deleteProductRepository.execute(id);
+    const productDeleted = await deleteProductRepository.execute(id);
 
-    res.json({
-      message: `Product id ${id} successfully deleted
-    `,
-    });
+    res.json(productDeleted);
   }
 }
 

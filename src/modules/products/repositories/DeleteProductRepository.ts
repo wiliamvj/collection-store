@@ -7,11 +7,31 @@ export class DeleteProductRepository {
       where: {
         id,
       },
+      select: {
+        id: true,
+        title: true,
+        status: true,
+        slug: true,
+        price: true,
+        sku: true,
+        gtin: true,
+        brand: true,
+        description: true,
+        category: true,
+        createdAt: true,
+        updatedAt: true,
+        images: true || null,
+        userId: true,
+      },
     });
 
     if (!productExists) {
       throw new Error(`This product id ${id} does not exists!`);
     }
+
+    productExists.images.forEach(async img => {
+      await prisma.image.delete({ where: { id: img.id } });
+    });
 
     const saveProduct = await prisma.product.delete({ where: { id } });
 
