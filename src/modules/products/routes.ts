@@ -11,6 +11,7 @@ import { UpdateProductController } from '../../modules/products/controllers/Upda
 import { SearchProductController } from '../../modules/products/controllers/SearchProductsController';
 import { UploadImageController } from '../../modules/products/controllers/UploadImageController';
 import { DeleteImageController } from '../../modules/products/controllers/DeleteImageController';
+import { ListUserProductsController } from './controllers/ListUserProductsController';
 
 const createProductController = new CreateProductController();
 const listProductController = new ListProductController();
@@ -19,6 +20,7 @@ const updateProductController = new UpdateProductController();
 const searchProductController = new SearchProductController();
 const uploadImageController = new UploadImageController();
 const deleteImageController = new DeleteImageController();
+const listUserProductsController = new ListUserProductsController();
 
 const productRoutes = Router();
 const upload = multer(multerConfig);
@@ -30,12 +32,14 @@ productRoutes.post(
 );
 productRoutes.post(
   '/product/image-upload/:sku',
+  validateAuthenticate,
   upload.single('image'),
   uploadImageController.handle,
 );
 
 productRoutes.get('/products/all', listProductController.handle);
 productRoutes.get('/products', searchProductController.handle);
+productRoutes.get('/products/user/:id', listUserProductsController.handle);
 
 productRoutes.delete(
   '/product/delete/:id',
