@@ -1,8 +1,7 @@
 import { Product, User } from '@prisma/client';
 
-export class CreateUserEntity implements User {
+export class CreateUserEntity {
   id: number;
   name: string;
   email: string;
-  password: string;
 }

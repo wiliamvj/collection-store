@@ -9,9 +9,9 @@ import { ProductEntity } from '../entities/product.entity';
 class CreateProductController {
   async handle(req: Request<{}, {}, CreateProductDto>, res: Response) {
     const product = req.body;
-    const userJson = JSON.stringify(product);
+    const productJson = JSON.stringify(product);
 
-    transformAndValidate(CreateProductDto, userJson).catch(err => {
+    transformAndValidate(CreateProductDto, productJson).catch(err => {
       res.json(err[0].constraints);
     });
 

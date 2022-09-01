@@ -3,6 +3,7 @@ import { Request, Response } from 'express';
 import { CreateUserRepository } from '../repositories/CreateUserRepository';
 import { CreateUserDto } from '../dto/create-user.dto';
 import { transformAndValidate } from 'class-transformer-validator';
+import { CreateUserEntity } from '../entities/create-user.entity';
 
 class CreateUserController {
   async handle(req: Request<{}, {}, CreateUserDto>, res: Response) {
@@ -15,8 +16,7 @@ class CreateUserController {
     });
 
     const createUserRepository = new CreateUserRepository();
-
-    const saveUser = await createUserRepository.execute(user);
+    const saveUser: CreateUserEntity = await createUserRepository.execute(user);
 
     res.json(saveUser);
   }
