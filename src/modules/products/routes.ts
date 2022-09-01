@@ -2,6 +2,7 @@ import { Router } from 'express';
 import multer from 'multer';
 
 import multerConfig from '../../modules/products/config/multer';
+import { validateAuthenticate } from '../../middlewares/validateAuthenticate';
 
 import { CreateProductController } from '../../modules/products/controllers/CreateProductController';
 import { ListProductController } from '../../modules/products/controllers/ListProductsController';
@@ -22,7 +23,11 @@ const deleteImageController = new DeleteImageController();
 const productRoutes = Router();
 const upload = multer(multerConfig);
 
-productRoutes.post('/product/new', createProductController.handle);
+productRoutes.post(
+  '/product/new',
+  validateAuthenticate,
+  createProductController.handle,
+);
 productRoutes.post(
   '/product/image-upload/:sku',
   upload.single('image'),
@@ -32,9 +37,21 @@ productRoutes.post(
 productRoutes.get('/products/all', listProductController.handle);
 productRoutes.get('/products', searchProductController.handle);
 
-productRoutes.delete('/product/delete/:id', deleteProductController.handle);
-productRoutes.delete('/product/image-delete/:id', deleteImageController.handle);
+productRoutes.delete(
+  '/product/delete/:id',
+  validateAuthenticate,
+  deleteProductController.handle,
+);
+productRoutes.delete(
+  '/product/image-delete/:id',
+  validateAuthenticate,
+  deleteImageController.handle,
+);
 
-productRoutes.patch('/product/update', updateProductController.handle);
+productRoutes.patch(
+  '/product/update',
+  validateAuthenticate,
+  updateProductController.handle,
+);
 
 export { productRoutes };

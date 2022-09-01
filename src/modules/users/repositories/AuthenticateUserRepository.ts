@@ -29,7 +29,7 @@ class AuthenticateUserRepository {
 
     const token = sign({ email }, process.env.SECRET_TOKEN as string, {
       subject: email,
-      expiresIn: '1d',
+      expiresIn: '10d',
     });
 
     const result = {
