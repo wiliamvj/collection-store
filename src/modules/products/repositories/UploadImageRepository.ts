@@ -1,4 +1,7 @@
+import path from 'path';
+import fs from 'fs';
 import { prisma } from '../../../database/prisma/PrismaClient';
+import { UploadImageCloudinary } from '../utils/UploudImageCloudinary.util';
 
 export class UploadImageRepository {
   async execute(sku: string, filename: string) {
@@ -14,22 +17,29 @@ export class UploadImageRepository {
       throw new Error(`This sku ${skuToUp} does not exists!`);
     }
 
+    const filePath = path.resolve(
+      __dirname,
+      '..',
+      '..',
+      '..',
+      'tmp',
+      'uploads',
+    );
+
+    const uploadImage = await UploadImageCloudinary(`${filePath}/${filename}`);
+
+    fs.unlinkSync(`${filePath}/${filename}`);
+
     const saveImage = await prisma.image.create({
       data: {
         filename: filename,
-        type: 'img',
-        size: 1899,
+        image_url: uploadImage.url,
+        type: uploadImage.format,
+        size: uploadImage.bytes,
         productId: skuToUp,
       },
     });
 
-    console.log(saveImage);
-
-    // const saveImageInPorduct = await prisma.product.update({
-    //   where: { sku },
-    //   data: { image: saveImage },
-    // });
-
-    return productExists;
+    return saveImage;
   }
 }

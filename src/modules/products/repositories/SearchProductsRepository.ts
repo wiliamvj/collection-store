@@ -23,6 +23,20 @@ export class SearchProductRepository {
           },
         ],
       },
+      select: {
+        id: true,
+        title: true,
+        slug: true,
+        price: true,
+        sku: true,
+        gtin: true,
+        brand: true,
+        description: true,
+        category: true,
+        createdAt: true,
+        updatedAt: true,
+        images: true || null,
+      },
     });
 
     if (products.length <= 0) {
