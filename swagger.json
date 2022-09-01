@@ -167,16 +167,20 @@
         "tags": [
           "Products"
         ],
-        "summary": "Upload image ",
-        "description": "Upload image for product endpoint",
-        "security": [
+        "summary": "uploads an image",
+        "operationId": "sku",
+        "parameters": [
           {
-            "bearerAuth": []
+            "name": "SKU",
+            "in": "path",
+            "description": "SkU product",
+            "required": true,
+            "style": "simple"
           }
         ],
         "requestBody": {
           "content": {
-            "image/png": {
+            "multipart/form-data": {
               "schema": {
                 "type": "string",
                 "format": "binary"
@@ -186,13 +190,7 @@
         },
         "responses": {
           "200": {
-            "description": "Ok"
-          },
-          "400": {
-            "description": "This sku (our sku) already exists!"
-          },
-          "401": {
-            "description": "Token not found!"
+            "description": "successful operation"
           }
         }
       }
