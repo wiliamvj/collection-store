@@ -9,6 +9,10 @@ class SearchProductController {
   async handle(req: Request, res: Response) {
     const { q, page } = req.query;
 
+    if (q === undefined) {
+      throw new Error('The search cannot be null!');
+    }
+
     const searchProductRepository = new SearchProductRepository();
 
     const searchResult: ListProductEntity =

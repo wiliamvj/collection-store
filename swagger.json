@@ -88,6 +88,93 @@
         }
       }
     },
+    "/products/all": {
+      "get": {
+        "tags": [
+          "Products"
+        ],
+        "summary": "Lista all products",
+        "description": "List all products with this endpoint, show 10 register per page",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "page",
+            "description": "Page",
+            "required": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok"
+          },
+          "400": {
+            "description": "No results!"
+          }
+        }
+      }
+    },
+    "/products": {
+      "get": {
+        "tags": [
+          "Products"
+        ],
+        "summary": "Search products",
+        "description": "Search products with title or sku with this endpoint, show 10 register per page",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "q",
+            "description": "Search value",
+            "required": true
+          },
+          {
+            "in": "query",
+            "name": "page",
+            "description": "Page",
+            "required": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok"
+          },
+          "400": {
+            "description": "No results or the search cannot be null"
+          }
+        }
+      }
+    },
+    "/products/user/{id}": {
+      "get": {
+        "tags": [
+          "Products"
+        ],
+        "summary": "User product list",
+        "description": "List all products of a user with this endpoint, show 10 register per page",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "description": "User id",
+            "required": true
+          },
+          {
+            "in": "query",
+            "name": "page",
+            "description": "Page",
+            "required": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok"
+          },
+          "400": {
+            "description": "No results or user id does not exists!"
+          }
+        }
+      }
+    },
     "/product/new": {
       "post": {
         "tags": [
