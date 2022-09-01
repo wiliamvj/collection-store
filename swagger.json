@@ -162,18 +162,96 @@
         }
       }
     },
+    "/product/update": {
+      "patch": {
+        "tags": [
+          "Products"
+        ],
+        "summary": "Update product",
+        "description": "Update a product with this endpoint",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "title": {
+                    "type": "string"
+                  },
+                  "status": {
+                    "type": "string",
+                    "example": "active or inactive"
+                  },
+                  "price": {
+                    "type": "number"
+                  },
+                  "sku": {
+                    "type": "string"
+                  },
+                  "gtin": {
+                    "type": "number"
+                  },
+                  "brand": {
+                    "type": "string"
+                  },
+                  "description": {
+                    "type": "string"
+                  },
+                  "category": {
+                    "type": "string"
+                  }
+                }
+              },
+              "example": {
+                "id": "7658f2fc-a710-466e-a6c5-50a993b01c88",
+                "title": "Persiana Romana Bambu",
+                "status": "active",
+                "price": 149.00,
+                "sku": "2675606",
+                "gtin": 123456784787,
+                "brand": "TokandTok",
+                "description": "As Persianas Romana de Bambu Block são práticas e modernas, devido as tramas intercaladas de bambu elas oferecem alta de retenção de luminosidade.",
+                "category": "Persianas"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Ok"
+          },
+          "400": {
+            "description": "This sku (our sku) already exists!"
+          },
+          "401": {
+            "description": "Token not found!"
+          }
+        }
+      }
+    },
     "/product/image-upload/{sku}": {
       "post": {
         "tags": [
           "Products"
         ],
-        "summary": "uploads an image",
-        "operationId": "sku",
+        "summary": "Uploads an image",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "parameters": [
           {
-            "name": "SKU",
+            "name": "sku",
             "in": "path",
-            "description": "SkU product",
+            "description": "SKU product",
             "required": true,
             "style": "simple"
           }
@@ -182,15 +260,59 @@
           "content": {
             "multipart/form-data": {
               "schema": {
-                "type": "string",
-                "format": "binary"
+                "type": "object",
+                "properties": {
+                  "image": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                }
               }
             }
           }
         },
         "responses": {
           "200": {
-            "description": "successful operation"
+            "description": "OK"
+          },
+          "400": {
+            "description": "This sku does not exists!"
+          },
+          "401": {
+            "description": "Token not found!"
+          }
+        }
+      }
+    },
+    "/product/image-delete/{sku}": {
+      "delete": {
+        "tags": [
+          "Products"
+        ],
+        "summary": "Delete an image",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "sku",
+            "in": "path",
+            "description": "Image ID",
+            "required": true,
+            "style": "simple"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Image deleted successfully"
+          },
+          "400": {
+            "description": "This image ID does not exists"
+          },
+          "401": {
+            "description": "Token not found!"
           }
         }
       }
