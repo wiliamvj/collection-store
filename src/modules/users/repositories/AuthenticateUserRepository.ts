@@ -1,4 +1,5 @@
 import { compare } from 'bcrypt';
+import { sign } from 'jsonwebtoken';
 import { prisma } from '../../../database/prisma/PrismaClient';
 import { AuthUserDto } from '../dto/auth-user.dto';
 import { CreateUserEntity } from '../entities/create-user.entity';
@@ -24,7 +25,21 @@ class AuthenticateUserRepository {
       throw new Error('Email or password invalid!');
     }
 
-    return userExists;
+    const { email } = userExists;
+
+    const token = sign({ email }, process.env.SECRET_TOKEN as string, {
+      subject: email,
+      expiresIn: '1d',
+    });
+
+    const result = {
+      id: userExists.id,
+      name: userExists.name,
+      email: userExists.email,
+      access_token: token,
+    };
+
+    return result;
   }
 }
 
