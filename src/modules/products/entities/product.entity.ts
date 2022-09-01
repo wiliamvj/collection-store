@@ -9,7 +9,6 @@ export class ProductEntity implements Product {
   gtin: number;
   brand: string;
   description: string;
-  image: string;
   category: string;
   createdAt: Date;
   updatedAt: Date;

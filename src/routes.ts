@@ -22,7 +22,7 @@ const upload = multer(multerConfig);
 
 routes.post('/product/new', createProductController.handle);
 routes.post(
-  '/product/image-upload',
+  '/product/image-upload/:sku',
   upload.single('image'),
   uploadImageController.handle,
 );

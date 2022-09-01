@@ -1,11 +1,19 @@
 import { Request, Response } from 'express';
 
-class UploadImageController {
-  handle(req: Request, res: Response) {
-    const image = req.file;
+import { UploadImageRepository } from '../repositories/UploadImageRepository';
 
-    console.log(image);
-    res.json(image);
+class UploadImageController {
+  async handle(req: Request, res: Response) {
+    const image = req.file;
+    const { sku } = req.params;
+
+    const uploadImageRepository = new UploadImageRepository();
+    const verifyProductExists = await uploadImageRepository.execute(
+      sku,
+      'testesds',
+    );
+
+    res.json(verifyProductExists);
   }
 }
 

@@ -1,5 +1,3 @@
-import { Product } from '@prisma/client';
-
 export class ListProductEntity {
   totalProduct: number;
   products: [
@@ -16,6 +14,7 @@ export class ListProductEntity {
       category: string;
       createdAt: Date;
       updatedAt: Date;
+      images?: object;
     },
   ];
 }

@@ -19,8 +19,23 @@ model Product {
   gtin        Int
   brand       String
   description String
-  image       String
   category    String
+  images      Image[]
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
+
+  @@map("product")
+}
+
+model Image {
+  id        String  @id @default(uuid())
+  filename  String  @unique
+  type      String
+  size      Int
+  productId String
+  product   Product @relation(fields: [productId], references: [sku])
+
+  createdAt DateTime @default(now())
+
+  @@map("image")
 }

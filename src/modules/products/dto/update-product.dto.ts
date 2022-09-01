@@ -31,9 +31,5 @@ export class UpdateProductDto {
 
   @IsNotEmpty()
   @IsString()
-  image?: string;
-
-  @IsNotEmpty()
-  @IsString()
   category?: string;
 }
