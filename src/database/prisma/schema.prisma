@@ -28,13 +28,14 @@ model Product {
 }
 
 model Image {
-  id        String  @id @default(uuid())
-  filename  String  @unique
-  image_url String
-  type      String
-  size      Int
-  productId String
-  product   Product @relation(fields: [productId], references: [sku])
+  id            String  @id @default(uuid())
+  filename      String  @unique
+  image_url     String
+  cloudinary_id String?
+  type          String
+  size          Int
+  productId     String
+  product       Product @relation(fields: [productId], references: [sku])
 
   createdAt DateTime @default(now())
 

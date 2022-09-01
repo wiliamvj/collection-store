@@ -16,3 +16,14 @@ export async function UploadImageCloudinary(imagePath: string) {
     throw new Error('Error to upload image to Cloudinary');
   }
 }
+
+export async function DeleteImageCloudinary(imagePath: string) {
+  try {
+    const upload = await cloudinary.v2.uploader.destroy(imagePath);
+
+    return upload;
+  } catch (err) {
+    console.log(err);
+    throw new Error('Error to delete image to Cloudinary');
+  }
+}

@@ -34,6 +34,7 @@ export class UploadImageRepository {
       data: {
         filename: filename,
         image_url: uploadImage.url,
+        cloudinary_id: uploadImage.public_id,
         type: uploadImage.format,
         size: uploadImage.bytes,
         productId: skuToUp,
