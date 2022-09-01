@@ -1,0 +1,12 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Collection Store API",
+    "description": "API for those looking for product data for interior decoration 🚀",
+    "version": "1.0.0",
+    "contact": {
+      "name": "Wiliam V. Joaquim",
+      "email": "wiliamjoaquim@gmail.com"
+    }
+  }
+}
