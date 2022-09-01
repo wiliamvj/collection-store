@@ -3,12 +3,17 @@ import { ListProductEntity } from '../entities/list-product.entity';
 import { ProductEntity } from '../entities/product.entity';
 
 export class ListProductRepository {
-  async execute() {
+  async execute(page: number) {
     const totalProduct = await prisma.product.count();
+
+    const offset = 10;
+    const newPage = page <= 1 ? 0 : page * offset - offset;
+
     const products: ProductEntity[] = await prisma.product.findMany({
       select: {
         id: true,
         title: true,
+        status: true,
         slug: true,
         price: true,
         sku: true,
@@ -20,6 +25,11 @@ export class ListProductRepository {
         updatedAt: true,
         images: true || null,
       },
+      skip: newPage,
+      take: offset,
+      orderBy: {
+        createdAt: 'desc',
+      },
     });
 
     if (products.length <= 0) {
@@ -28,6 +38,7 @@ export class ListProductRepository {
 
     const result = {
       totalProduct,
+      totalProductInPage: products.length,
       products,
     } as ListProductEntity;
 

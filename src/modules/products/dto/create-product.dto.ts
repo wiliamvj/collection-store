@@ -1,9 +1,16 @@
-import { IsString, IsNotEmpty, IsNumber } from 'class-validator';
+import { IsString, IsNotEmpty, IsNumber, Contains } from 'class-validator';
 
 export class CreateProductDto {
   @IsNotEmpty()
   @IsString()
   title: string;
+
+  @IsNotEmpty()
+  @IsString()
+  @Contains('active' || 'inactive', {
+    message: 'Accepted status: active or inactive',
+  })
+  status: string;
 
   @IsNotEmpty()
   @IsNumber()

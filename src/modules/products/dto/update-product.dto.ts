@@ -1,4 +1,4 @@
-import { IsString, IsNotEmpty, IsNumber } from 'class-validator';
+import { IsString, IsNotEmpty, IsNumber, Contains } from 'class-validator';
 
 export class UpdateProductDto {
   @IsNotEmpty()
@@ -9,6 +9,12 @@ export class UpdateProductDto {
   @IsString()
   title?: string;
 
+  @IsNotEmpty()
+  @IsString()
+  @Contains('active' || 'inactive', {
+    message: 'Accepted status: active or inactive',
+  })
+  status: string;
   @IsNotEmpty()
   @IsNumber()
   price?: number;
