@@ -44,12 +44,34 @@ export class ListUserProductRepository {
       },
     });
 
+    const totalProducts: ProductEntity[] = await prisma.product.findMany({
+      where: {
+        userId: id,
+      },
+      select: {
+        id: true,
+        title: true,
+        status: true,
+        slug: true,
+        price: true,
+        sku: true,
+        gtin: true,
+        brand: true,
+        description: true,
+        category: true,
+        createdAt: true,
+        updatedAt: true,
+        images: true || null,
+        userId: true,
+      },
+    });
+
     if (products.length <= 0) {
       throw new Error(`No results!`);
     }
 
     const result = {
-      totalProduct,
+      totalProduct: totalProducts.length,
       totalProductInPage: products.length,
       products,
     } as ListProductEntity;

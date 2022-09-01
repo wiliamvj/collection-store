@@ -12,7 +12,6 @@ export async function UploadImageCloudinary(imagePath: string) {
 
     return upload;
   } catch (err) {
-    console.log(err);
     throw new Error('Error to upload image to Cloudinary');
   }
 }
@@ -23,7 +22,6 @@ export async function DeleteImageCloudinary(imagePath: string) {
 
     return upload;
   } catch (err) {
-    console.log(err);
     throw new Error('Error to delete image to Cloudinary');
   }
 }

@@ -7,8 +7,6 @@ export class UploadImageRepository {
   async execute(sku: string, filename: string) {
     const skuToUp = sku.toUpperCase();
 
-    console.log({ sku, filename });
-
     const productExists = await prisma.product.findUnique({
       where: {
         sku: skuToUp,
