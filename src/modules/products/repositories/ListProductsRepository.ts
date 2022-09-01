@@ -24,6 +24,7 @@ export class ListProductRepository {
         createdAt: true,
         updatedAt: true,
         images: true || null,
+        userId: true,
       },
       skip: newPage,
       take: offset,

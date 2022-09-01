@@ -46,6 +46,7 @@ export class SearchProductRepository {
         category: true,
         createdAt: true,
         updatedAt: true,
+        userId: true,
         images: true || null,
       },
     });

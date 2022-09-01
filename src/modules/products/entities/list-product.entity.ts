@@ -14,6 +14,7 @@ export class ListProductEntity {
       description: string;
       image: string;
       category: string;
+      userId: number;
       createdAt: Date;
       updatedAt: Date;
       images?: object;

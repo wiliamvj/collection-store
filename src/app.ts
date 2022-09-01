@@ -2,14 +2,16 @@ import express, { NextFunction, Response, Request } from 'express';
 import * as dotenv from 'dotenv';
 import 'express-async-errors';
 
-import { routes } from './routes';
+import { productRoutes } from './modules/products/routes';
+import { userRoutes } from './modules/users/routes';
 
 dotenv.config();
 const app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(routes);
+app.use(productRoutes);
+app.use(userRoutes);
 
 app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
   if (err instanceof Error) {

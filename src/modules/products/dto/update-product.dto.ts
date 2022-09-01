@@ -2,6 +2,10 @@ import { IsString, IsNotEmpty, IsNumber, Contains } from 'class-validator';
 
 export class UpdateProductDto {
   @IsNotEmpty()
+  @IsNumber()
+  userId: number;
+
+  @IsNotEmpty()
   @IsString()
   id: string;
 

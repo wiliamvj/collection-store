@@ -10,6 +10,16 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model User {
+  id       Int       @id @default(autoincrement())
+  name     String
+  email    String    @unique
+  password String
+  products Product[]
+
+  @@map("user")
+}
+
 model Product {
   id          String   @id @default(uuid())
   status      String
@@ -22,6 +32,8 @@ model Product {
   description String
   category    String
   images      Image[]
+  user        User     @relation(fields: [userId], references: [id])
+  userId      Int
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 
