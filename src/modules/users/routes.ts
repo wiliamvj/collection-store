@@ -8,7 +8,7 @@ const authenticateUserController = new AuthenticateUserController();
 
 const userRoutes = Router();
 
-userRoutes.post('/user/new', createUserController.handle);
-userRoutes.post('/user/login', authenticateUserController.handle);
+userRoutes.post('/register', createUserController.handle);
+userRoutes.post('/login', authenticateUserController.handle);
 
 export { userRoutes };

@@ -10,7 +10,7 @@
     }
   },
   "paths": {
-    "/user": {
+    "/register": {
       "post": {
         "tags": [
           "User"
@@ -35,18 +35,129 @@
               },
               "example": {
                 "name": "Fulano",
-                "email": "thebestemail.com",
-                "password": "strongPass1*"
+                "email": "youremail@email.com",
+                "password": "stRongPass1*"
               }
             }
           }
         },
         "responses": {
           "200": {
-            "description": "Created"
+            "description": "OK"
           },
           "400": {
             "description": "User alredy exists!"
+          }
+        }
+      }
+    },
+    "/login": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Login ",
+        "description": "Route for login",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "email": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  }
+                }
+              },
+              "example": {
+                "email": "youremail@email.com",
+                "password": "stRongPass1*"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Email or password invalid!"
+          }
+        }
+      }
+    },
+    "/product/new": {
+      "post": {
+        "tags": [
+          "Products"
+        ],
+        "summary": "Create a new product",
+        "description": "Register a new product with this endpoint",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "userId": {
+                    "type": "number"
+                  },
+                  "title": {
+                    "type": "string"
+                  },
+                  "status": {
+                    "type": "string",
+                    "example": "active or inactive"
+                  },
+                  "price": {
+                    "type": "number"
+                  },
+                  "sku": {
+                    "type": "string"
+                  },
+                  "gtin": {
+                    "type": "number"
+                  },
+                  "brand": {
+                    "type": "string"
+                  },
+                  "description": {
+                    "type": "string"
+                  },
+                  "category": {
+                    "type": "string"
+                  }
+                }
+              },
+              "example": {
+                "userId": 2,
+                "title": "Persiana Romana Bambu",
+                "status": "active",
+                "price": 349.00,
+                "sku": "2675606",
+                "gtin": 123456784787,
+                "brand": "TokandTok",
+                "description": "As Persianas Romana de Bambu Block são práticas e modernas, devido as tramas intercaladas de bambu elas oferecem alta de retenção de luminosidade.",
+                "category": "Persianas"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Ok"
+          },
+          "400": {
+            "description": "This sku (our sku) already exists!"
+          },
+          "401": {
+            "description": "Token not found!"
           }
         }
       }
