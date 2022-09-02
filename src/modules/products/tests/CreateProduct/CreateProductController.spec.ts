@@ -5,7 +5,7 @@ import { ProductEntity } from '../../entities/product.entity';
 import { CreateProductRepositoryInMemo } from './CreateProductRepositoryInMemo';
 
 describe('Create new product', () => {
-  it('Should be able create a new peoduct', async () => {
+  it('Should be able create a new product', async () => {
     const productMock = {
       userId: 10,
       title: 'Bicama Solteiro com Nicho Lateral Helena Cimol Branco',

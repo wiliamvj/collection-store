@@ -10,6 +10,7 @@ Technologies used:
 - PostgreSQL
 - Prisma ORM
 - Swagger
+- Jest
 
 ## How to run?
 
@@ -21,6 +22,7 @@ Technologies used:
 ## Available commands
 
 - ```yarn dev``` start the server
+-  ```yarn test``` start the tests with jest
 
 These commands can be changed in **package.json**
 
@@ -32,3 +34,19 @@ DOCS avaible in [here]()
 
 
 To access some routes and I need to authenticate with Bearer token, see how to do it with Swagger [here](https://mattfrear.com/2018/07/21/add-an-authorization-header-to-your-swagger-ui-with-swashbuckle-revisited/)
+
+## About the tests
+Simple unit tests in the business rules
+
+- Should be able to create a new user </br >
+**Create new user**
+
+- Should not be able to create user with weak password </br >
+**Create new user**
+
+- Should be able list all products</br >
+**List all product**
+
+- Should be able create a new product </br >
+**Create new product**
+
