@@ -7,8 +7,11 @@
     "schema": "src/database/prisma/schema.prisma"
   },
   "scripts": {
+    "start": "node dist/src/server.js",
     "dev": "ts-node-dev --exit-child --ignore-watch --transpile-only src/server.ts",
-    "test": "jest"
+    "test": "jest",
+    "build": "prisma migrate deploy",
+    "postinstall": "tsc"
   },
   "dependencies": {
     "@prisma/client": "^4.3.0",
