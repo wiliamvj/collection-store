@@ -11,6 +11,12 @@ describe('Create new user', () => {
       password: 'thePas12$#',
     } as CreateUserDto;
 
+    const userJson = JSON.stringify(userMock);
+
+    await transformAndValidate(CreateUserDto, userJson).catch(err => {
+      return err[0].constraints;
+    });
+
     const createUserRepositoryInMemo = new CreateUserRepositoryInMemo();
     const createUserMock: CreateUserEntity =
       await createUserRepositoryInMemo.execute(userMock);
@@ -39,5 +45,25 @@ describe('Create new user', () => {
     expect(error.matches).toEqual(
       'Enter a password of at least 8 characters with capital letters and special characters',
     );
+  });
+
+  it('Should not be able to create user that already exists', async () => {
+    const userMock = {
+      name: 'Wiliam',
+      email: 'wiliamjoaquim@gmail.com',
+      password: 'thePas12$#',
+    } as CreateUserDto;
+
+    const userJson = JSON.stringify(userMock);
+
+    await transformAndValidate(CreateUserDto, userJson).catch(err => {
+      return err[0].constraints;
+    });
+
+    const func = () => {
+      throw new Error('User alredy exists!');
+    };
+
+    expect(func).toThrow('User alredy exists!');
   });
 });
