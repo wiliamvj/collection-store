@@ -16,7 +16,7 @@ Technologies used:
 - Git clone this repo
 - Execute command ```yarn``` or ```npm install```, ff using npm, I recommend deleting the **yarn.lock** file
 - Create an **.env** file for the postgresql environment variable see an example [here](https://www.prisma.io/docs/concepts/database-connectors/postgresql)
-- Execute ```yarn prisma migrate dev``` or ```npm prisma migrate dev``` to run the migrations
+- Execute ```yarn prisma migrate dev``` or ```npx prisma migrate dev``` to run the migrations
 
 ## Available commands
 
