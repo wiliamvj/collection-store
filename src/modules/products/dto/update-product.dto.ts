@@ -5,37 +5,30 @@ export class UpdateProductDto {
   @IsString()
   id: string;
 
-  @IsNotEmpty()
   @IsString()
   title?: string;
 
-  @IsNotEmpty()
   @IsString()
   @Contains('active' || 'inactive', {
     message: 'Accepted status: active or inactive',
   })
-  status: string;
-  @IsNotEmpty()
+  status?: string;
+
   @IsNumber()
   price?: number;
 
-  @IsNotEmpty()
   @IsString()
   sku?: string;
 
-  @IsNotEmpty()
   @IsNumber()
   gtin?: number;
 
-  @IsNotEmpty()
   @IsString()
   brand?: string;
 
-  @IsNotEmpty()
   @IsString()
   description?: string;
 
-  @IsNotEmpty()
   @IsString()
   category?: string;
 }

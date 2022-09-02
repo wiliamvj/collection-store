@@ -30,7 +30,11 @@ These commands can be changed in **package.json**
 
 Images on [Clodinary](https://cloudinary.com/)
 
-DOCS avaible in [here]()
+DOCS avaible in [here](https://collection-store-test.herokuapp.com/api-docs/)
+
+you can consume an api using this base url:
+
+https://collection-store-test.herokuapp.com
 
 
 To access some routes and I need to authenticate with Bearer token, see how to do it with Swagger [here](https://mattfrear.com/2018/07/21/add-an-authorization-header-to-your-swagger-ui-with-swashbuckle-revisited/)
